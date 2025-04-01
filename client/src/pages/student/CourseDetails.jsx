@@ -13,7 +13,7 @@ const CourseDetails = () => {
   const [courseData, setCourseData] = useState(null);
   const [openSection, setOpenSection] = useState({});
   const [isAlreadyEnrolled, setIsAlreadyEnrolled] = useState(false)
-  const [playerData, setPlayerData] = useState(false);
+  const [playerData, setPlayerData] = useState(true);
 
 
   const { allCourses, calculateRating, calculateChapterTime, calculateCourseDuration, calculateNumberOfLectures, currency } = useContext(AppContext);
@@ -120,7 +120,7 @@ const CourseDetails = () => {
         {/* Image without space */}
         <div className="w-full h-auto">
         {
-            playerData ? <YouTube videoId={playerData?.videoId} opts={{playerVars: {
+            playerData ? <YouTube videoId={playerData.videoId} opts={{playerVars: {
               autoplay: 1  }}} iframeClassName='w-full aspect-video' /> :  <img className="w-full h-full object-cover" src={courseData.courseThumbnail} alt="" />
         }
         </div>
