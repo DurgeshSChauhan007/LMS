@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="hidden md:block h-7 w-px bg-gray-500/60"></div>
         <p className="text-gray-600 text-sm">Copyright 2025 © Durgesh Singh Chauhan. All Rights Reserved.</p>
       </div>
-      <div className='flex items-center gap-3 max-md:mt-4'>
+      <div className='flex items-center gap-3 max-md:mt-0'>
         <a href="#">
           <img src={assets.facebook_icon} alt="facebook_icon" />
         </a>
