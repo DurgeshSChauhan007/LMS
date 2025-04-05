@@ -9,7 +9,7 @@ userRouter.get('/enrolled-courses', userEnrollledCourse);
 userRouter.post('/purchase', purchaseCourse);
 
 userRouter.post('/update-course-progress', updateUserCourseProgess);
-userRouter.post('/get-coutse-progress', getUserCourseProgress);
+userRouter.post('/get-course-progress', getUserCourseProgress);
 userRouter.post('/add-rating', addUserRatings);
 
 export default userRouter;
