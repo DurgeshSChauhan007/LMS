@@ -153,7 +153,7 @@ export const addUserRatings = async(req, res) => {
 
         const user = await User.findById(userId);
 
-        if (!user || user.enrolledCourses.includes(courseId)) {
+        if (!user || !user.enrolledCourses.includes(courseId)) {
             return res.json({ success: false, message: 'User Not Found or Not Enrolled' });
         }
 
