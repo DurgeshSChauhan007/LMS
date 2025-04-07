@@ -84,8 +84,7 @@ const Player = () => {
     try {
       const token = await getToken();
       const { data } = await axios.post(backendUrl + '/api/user/add-rating', { courseId, rating}, { headers: { Authorization: `Bearer ${token}`}})
-
-      console.log(data)
+      
 
       if (data.success) {
         toast.success(data.message);
@@ -124,7 +123,7 @@ const Player = () => {
                     <li key={lectureIndex} className='flex items-start gap-2 py-1'>
                       <img
                           src={
-                            progressData?.lectureCompleted?.includes(playerData?.lectureId)
+                            progressData?.lectureCompleted?.includes(lecture.lectureId)
                               ? assets.blue_tick_icon
                               : assets.play_icon
                           }

@@ -157,12 +157,12 @@ export const addUserRatings = async(req, res) => {
             return res.json({ success: false, message: 'User Not Found or Not Enrolled' });
         }
 
-        const existingRatingIndex = course.ratings.findIndex(r => r.userId.toString() === userId.toString());
+        const existingRatingIndex = course.courseRatings.findIndex(r => r.userId.toString() === userId.toString());
 
         if (existingRatingIndex !== -1) {
-            course.ratings[existingRatingIndex].rating = rating;
+            course.courseRatings[existingRatingIndex].rating = rating;
         } else {
-            course.ratings.push({ userId, rating });
+            course.courseRatings.push({ userId, rating });
         }
         await course.save();
 
