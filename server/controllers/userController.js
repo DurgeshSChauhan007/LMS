@@ -23,15 +23,35 @@ export const getUserData = async (req, res) => {
 
 // User Enrolled Course With Lecture Links
 export const userEnrollledCourse = async (req, res) => {
-    try {
-        const userId = req.auth.userId;
-        const userData = await User.findById(userId).populate('enrolledCourses'); 
+  try {
+    const userId = req.auth?.userId;
 
-        res.json({ success: true, enrolledCourses: userData.enrolledCourses });
-    } catch (error) {
-        res.json({ success: false, message: error.message });
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: "User ID is missing from request"
+      });
     }
-}
+
+    const userData = await User.findById(userId).populate("enrolledCourses");
+
+    if (!userData) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found"
+      });
+    }
+
+    res.json({
+      success: true,
+      enrolledCourses: userData.enrolledCourses || []
+    });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 
 // Purchase Course
 export const purchaseCourse = async(req,res) => {

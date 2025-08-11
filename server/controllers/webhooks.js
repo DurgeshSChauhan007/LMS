@@ -87,10 +87,10 @@ export const stripeWebHooks = async(request, response) => {
             const userData = await User.findById(purchaseData.userId);
             const courseData = await Course.findById(purchaseData.courseId.toString());
 
-            courseData.enrolledStudents.push(userData);
+            courseData.enrolledStudents.addToSet(userData._id);
             await courseData.save();
 
-            userData.enrolledCourses.push(courseData._id);
+            userData.enrolledCourses.addToSet(courseData._id);
             await userData.save();
 
             purchaseData.status = "completed";
@@ -113,6 +113,8 @@ export const stripeWebHooks = async(request, response) => {
             
             break;
         }
+
+        
 
         // ... handle other event types
         default:
